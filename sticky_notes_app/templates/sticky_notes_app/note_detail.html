@@ -1,0 +1,14 @@
+{% extends 'sticky_notes_app/base.html' %}
+
+{% block title %}Note Detail{% endblock %}
+
+{% block content %}
+    <h2>{{ note.title }}</h2>
+    <p>{{ note.content }}</p>
+    <a href="{% url 'note_edit' note.pk %}" class="btn btn-secondary">Edit</a>
+    <form action="{% url 'note_delete' note.pk %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    <a href="{% url 'note_list' %}" class="btn btn-primary">Back to list</a>
+{% endblock %}
